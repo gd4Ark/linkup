@@ -1,0 +1,124 @@
+$direction_size : 1px;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+html,body{
+    @extend .flex;
+    height: 100%;
+    background:#296e25;
+    overflow: hidden;
+}
+.grid-cell{
+    @extend .flex;
+    margin: 0 auto;
+    width: 99%;
+    max-width: 400px;
+}
+.grid-item{
+    @extend .flex;
+    position: relative;
+    float: left;
+    height: 100%;
+    border-radius: 5px;
+    & > div{
+        width: 100%;
+        height: 100%;
+    }
+}
+.grid-item.action .grid-item-content{
+    background:#fc813f;
+}
+.grid-item.hidden .grid-item-content{
+    opacity: 0;
+}
+.grid-item-content{
+    @extend .flex;
+    background:rgba(0,0,0,0.2);
+    color:white;
+    font-size: 12px;
+    transition: all 0.2s ease;
+    border-radius: 3px;
+}
+.grid-item-content img{
+    width: 90%;
+    height: 90%;
+}
+.grid-item-direction{
+    position: absolute;
+    pointer-events: none;
+    & > div{
+        position: absolute;
+        background:#fc813f;
+        opacity: 0;
+    }
+    &.up,&.down{
+        & > div.y{
+            margin: 0 auto;
+            left: 0;
+            right: 0;
+            width: $direction_size;
+            height: 50%;
+  
+        }
+    }
+    &.left,&.right{
+        & > div.x{
+            margin: auto 0;
+            top: 0;
+            bottom: 0;
+            width: 50%;
+            height: $direction_size;      
+        }
+    }
+    &.up > div.up{
+        top: 0;
+        opacity: 1;
+        animation: height 0.2s ease; 
+    }
+    &.down > div.down{
+        bottom: 0;
+        opacity: 1;
+        animation: height 0.2s ease; 
+    }
+    &.left > div.left{
+        left: 0;
+        opacity: 1;
+        animation: width 0.2s ease;  
+    }
+    &.right > div.right{
+        right: 0;
+        opacity: 1;
+        animation: width 0.2s ease;
+    }
+}
+
+/*.grid-cell:nth-child(1) .grid-item-content,
+.grid-cell:nth-last-child(1) .grid-item-content,
+.grid-item:nth-child(1) .grid-item-content,
+.grid-item:nth-last-child(1) .grid-item-content{
+    display: none;
+}*/
+
+@keyframes height{
+    0%{
+        height: 0;
+    }
+    100%{
+        height: 50%;
+    }
+}
+@keyframes width{
+    0%{
+        width: 0;
+    }
+    100%{
+        width: 50%;
+    }
+}
