@@ -1,9 +1,9 @@
 var config = (function(){
 
 
-    var row = 3;
-    var col = 4;
-    var objectCount = 6;
+    var row = 8;
+    var col = 9;
+    var objectCount = 12;
     var repeatCount = row * col / objectCount;
 
     var imgUrl = "./img/";
