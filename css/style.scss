@@ -116,3 +116,10 @@ html,body{
         width: 50%;
     }
 }
+
+@media screen and (max-width:350px){
+    .grid-item-content img{
+        width: 28px;
+        height: 44px;
+    }
+}

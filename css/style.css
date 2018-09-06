@@ -91,5 +91,9 @@ html, body {
     width: 0; }
   100% {
     width: 50%; } }
+@media screen and (max-width: 350px) {
+  .grid-item-content img {
+    width: 28px;
+    height: 44px; } }
 
 /*# sourceMappingURL=style.css.map */
