@@ -17,12 +17,13 @@ var View = (function(){
 
         itemHTML : function(el){
             var empty = el.val === null;
+            var img = config.imgByName(empty ? 0 : el.val);
             return (
                 `<div class="grid-item ${empty ? 'hidden' : ''}" 
                     data-val="${el.val}"
                     data-index="${el.index}">
                  <div class="grid-item-content">
-                    <img draggable="false" src="./img/${empty ? 0 : el.val}.png"></img>
+                    ${img}
                  </div>
                     ${config.itemDirectionHTML}
                 </div>`

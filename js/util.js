@@ -32,3 +32,7 @@ var toNdimension = function(arr,num){
     }
     return new_arr;
 }
+
+function reduceDimension(arr) {
+    return Array.prototype.concat.apply([], arr);
+}

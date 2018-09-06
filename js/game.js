@@ -2,9 +2,10 @@ var Game = (function(){
 
     var ROW = config.row + 2;
     var COL = config.col + 2;
+    var itemCount = config.row * config.col;
 
     var data = {
-        time : 100,
+        // time : 100,
         cell : [],
     };
 
@@ -26,6 +27,7 @@ var Game = (function(){
         start : function(){
             this.initCell();
             this.fillCell();
+            this.checkDeadlock();
         },
         initCell : function(){
             var index = -1;
@@ -70,9 +72,13 @@ var Game = (function(){
                 obj.y * COL + obj.x
             );
         },
-        removeItem : function(index){
-            this.getItem(index).val = null;
-            this.view.removeItem(index);
+        removeItem: function (before,after) {
+            this.getItem(before).val = null;
+            this.getItem(after).val = null;
+            this.view.removeItem(before);
+            this.view.removeItem(after);
+            itemCount-=2;
+            this.checkWinning();
         },
         isEmpty : function(obj){
             return obj.val === null;
@@ -207,8 +213,8 @@ var Game = (function(){
             }
         },
         isConnectable : function(before,after){
-            var _this = this;
             var status = {};
+            if (before === after) return false;
             if (!this.isSame(before,after)) return false;
             var calleds = [
                 // 直连
@@ -230,17 +236,15 @@ var Game = (function(){
         judge : function(before,after){
             var _this = this;
             var status = this.isConnectable(before,after);
-            if (status.success){
+            if (status && status.success) {           
                 if (status.pos.length>0){
                     status.pos.unshift(before);
                     status.pos.push(after);
                     this.view.showLine(status.pos,function(){
-                        _this.removeItem(before);
-                        _this.removeItem(after);
+                        _this.removeItem(before,after);
                     });
                 }else{
-                    this.removeItem(before);
-                    this.removeItem(after);
+                    this.removeItem(before,after);
                 }
                 return true;
             }else{
@@ -275,6 +279,75 @@ var Game = (function(){
             var pos = this.indexToPos(index);
             return data.cell[pos.y][pos.x];
         },
+
+        winning: function () {
+            setTimeout(function () {
+                var str = "已完成，确定再来一局吗？";
+                if (confirm(str)) {
+                    location.reload();
+                }
+            }, 50);
+        },
+
+        checkWinning: function () {
+            if (itemCount === 0) {
+                this.winning();
+            } else {
+                this.checkDeadlock();
+            }
+        },
+
+        checkDeadlock: function () {
+            var count = config.objectCount;
+            var cell = reduceDimension(data.cell);
+            var filter = function (i) {
+                return cell.filter(function (el) {
+                    return el.val === i; 
+                });
+            };
+            for (var i = 0; i < count; i++){
+                var result = filter(i);
+                var len = result.length;
+                for (var j = 0; j < len; j++) {
+                    var el = result[j].index;
+                    for (var k = 0; k < len; k++){
+                        var status = this.isConnectable(el, result[k].index);
+                        if (status && status.success) {
+                            return;
+                        }
+                    }
+                }
+            }
+            this.randomReset();
+        },
+
+        randomReset: function () {
+            var _this = this;
+            var row = config.row;
+            var col = config.col
+            var cell = (function () {
+                return reduceDimension(data.cell).filter(function (el) {
+                    return el.val !== null; 
+                });
+            })();
+            this.initCell();
+            cell.forEach(function (el) {
+                while(true){
+                    var x = random(1,col);
+                    var y = random(1,row);
+                    var item = data.cell[y][x];
+                    if (item.val===null){
+                        data.cell[y][x] = {
+                            val: el.val,
+                            index: _this.posToIndex({ x: x, y: y }),
+                        }
+                        break;
+                    }
+                }
+            });
+            this.view.init(this, data);
+            this.checkDeadlock();
+        }
     }
 
 
