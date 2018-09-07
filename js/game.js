@@ -5,9 +5,11 @@ var Game = (function(){
     var itemCount = config.row * config.col;
 
     var data = {
-        // time : 100,
+        time : config.time,
         cell : [],
     };
+
+    var timeCooldown = 60;
 
     var Game = function(){
         
@@ -28,7 +30,28 @@ var Game = (function(){
             this.initCell();
             this.fillCell();
             this.checkDeadlock();
+            this.update();
         },
+
+        update: function () {
+
+            this.updateTime();
+
+            window.requestAnimationFrame(this.update.bind(this));  
+        },
+
+        updateTime: function () {
+            timeCooldown--;
+            if (!timeCooldown) {
+                timeCooldown = 60;
+                data.time--;
+                this.view.updateTime(data.time);
+            }
+            if (data.time === 0) {
+                this.over();
+            }
+        },
+
         initCell : function(){
             var index = -1;
             for (var i=0; i<ROW; i++){
@@ -77,7 +100,7 @@ var Game = (function(){
             this.getItem(after).val = null;
             this.view.removeItem(before);
             this.view.removeItem(after);
-            itemCount-=2;
+            itemCount -= 2;
             this.checkWinning();
         },
         isEmpty : function(obj){
@@ -283,10 +306,16 @@ var Game = (function(){
         winning: function () {
             setTimeout(function () {
                 var str = "已完成，确定再来一局吗？";
-                if (confirm(str)) {
-                    location.reload();
-                }
+                alert(str);
+                location.reload();
             }, 50);
+        },
+        
+        over: function () {
+            data.time = config.time;
+            var str = "失败！确定再来一局吗？";
+            alert(str);
+            location.reload();   
         },
 
         checkWinning: function () {

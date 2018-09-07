@@ -6,6 +6,8 @@ var config = (function(){
     var objectCount = 12;
     var repeatCount = row * col / objectCount;
 
+    var time = 90;
+
     var imgUrl = "./img/";
     var imgExtension = ".png";
     var imgByName = function (name) {
@@ -26,7 +28,8 @@ var config = (function(){
         objectCount : objectCount,
         repeatCount: repeatCount, 
         imgByName : imgByName,
-        itemDirectionHTML : itemDirectionHTML,
+        itemDirectionHTML: itemDirectionHTML,
+        time : time,
     }
 
 })();

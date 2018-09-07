@@ -10,15 +10,51 @@ $direction_size : 2px;
     align-items: center;
 }
 html,body{
-    @extend .flex;
     height: 100%;
-    background:#296e25;
     overflow: hidden;
+    background:#296e25;
+    color:white;
+    font-size: 16px;
+}
+.btn{
+    padding: 0 8px;
+    background: rgba(0,0,0,0.2);
+    color: white;
+    height: 40px;
+    line-height: 40px;
+    border-radius: 3px;
+}
+a{
+    text-decoration: none;
+    color:inherit;
+}
+.container{
+    @extend .flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    max-width: 480px;
+    height: 100%;
+    overflow: hidden;
+    & > div{
+        width: 100%;
+    }
+}
+.heading{
+    @extend .flex;
+    // margin-top: 5px;
+    justify-content: space-around;
+    align-items: center;
+    height: 50px;
+    // background:red;
+}
+.heading .time{
+    width: 65px;
+    text-align: center;
+    font-size: 2.6rem;
 }
 .grid-cell{
     @extend .flex;
     margin: 0 auto;
-    width: 99%;
     max-width: 400px;
 }
 .grid-item{
@@ -48,8 +84,9 @@ html,body{
     border-radius: 3px;
 }
 .grid-item-content img{
-    width: 35px;
-    height: 55px;
+    width: 34px;
+    height: 54px;
+    cursor: pointer;
 }
 .grid-item-direction{
     position: absolute;
@@ -100,6 +137,10 @@ html,body{
     }
 }
 
+.footer{
+    text-align: center;
+}
+
 @keyframes height{
     0%{
         height: 0;
@@ -117,7 +158,10 @@ html,body{
     }
 }
 
-@media screen and (max-width:350px){
+@media screen and (max-width:390px){
+    .heading{
+        padding: 0 28px;
+    }
     .grid-item-content img{
         width: 28px;
         height: 44px;
