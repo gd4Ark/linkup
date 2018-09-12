@@ -11,14 +11,19 @@ $direction_size : 2px;
 }
 html,body{
     height: 100%;
+}
+body{
+    margin: 0 auto;
+    max-width: 480px;
+    background:url('../bg/dw_bg.jpg');
+    background-size: cover;
     overflow: hidden;
-    background:#296e25;
     color:white;
     font-size: 16px;
 }
 .btn{
     padding: 0 8px;
-    background: rgba(0,0,0,0.2);
+    background: rgba(255,255,255,0.2);
     color: white;
     height: 40px;
     line-height: 40px;
@@ -32,7 +37,7 @@ a{
     @extend .flex;
     flex-wrap: wrap;
     margin: 0 auto;
-    max-width: 480px;
+    background:rgba(0,0,0,0.5);
     height: 100%;
     overflow: hidden;
     & > div{
@@ -77,15 +82,15 @@ a{
 .grid-item-content{
     @extend .flex;
     padding: 1px;
-    background:rgba(0,0,0,0.2);
+    // background:rgba(0,0,0,0.2);
     color:white;
     font-size: 12px;
     transition: all 0.2s ease;
     border-radius: 3px;
 }
 .grid-item-content img{
-    width: 34px;
-    height: 54px;
+    width: 40px;
+    height: 40px;
     cursor: pointer;
 }
 .grid-item-direction{
@@ -158,12 +163,21 @@ a{
     }
 }
 
-@media screen and (max-width:390px){
+@media screen and (max-width:400px){
     .heading{
         padding: 0 28px;
     }
     .grid-item-content img{
-        width: 28px;
-        height: 44px;
+        width: 41px;
+        height: 41px;
+    }
+}
+@media screen and (max-width:325px){
+    .heading{
+        padding: 0 28px;
+    }
+    .grid-item-content img{
+        width: 35px;
+        height: 35px;
     }
 }

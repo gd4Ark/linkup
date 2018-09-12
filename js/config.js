@@ -1,12 +1,12 @@
 var config = (function(){
 
 
-    var row = 8;
-    var col = 9;
-    var objectCount = 12;
+    var row = 12;
+    var col = 7;
+    var objectCount = 14;
     var repeatCount = row * col / objectCount;
 
-    var time = 90;
+    var time = 120;
 
     var imgUrl = "./img/";
     var imgExtension = ".png";

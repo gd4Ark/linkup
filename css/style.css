@@ -9,15 +9,20 @@
   align-items: center; }
 
 html, body {
-  height: 100%;
+  height: 100%; }
+
+body {
+  margin: 0 auto;
+  max-width: 480px;
+  background: url("../bg/dw_bg.jpg");
+  background-size: cover;
   overflow: hidden;
-  background: #296e25;
   color: white;
   font-size: 16px; }
 
 .btn {
   padding: 0 8px;
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(255, 255, 255, 0.2);
   color: white;
   height: 40px;
   line-height: 40px;
@@ -30,7 +35,7 @@ a {
 .container {
   flex-wrap: wrap;
   margin: 0 auto;
-  max-width: 480px;
+  background: rgba(0, 0, 0, 0.5);
   height: 100%;
   overflow: hidden; }
   .container > div {
@@ -67,15 +72,14 @@ a {
 
 .grid-item-content {
   padding: 1px;
-  background: rgba(0, 0, 0, 0.2);
   color: white;
   font-size: 12px;
   transition: all 0.2s ease;
   border-radius: 3px; }
 
 .grid-item-content img {
-  width: 34px;
-  height: 54px;
+  width: 40px;
+  height: 40px;
   cursor: pointer; }
 
 .grid-item-direction {
@@ -127,12 +131,19 @@ a {
     width: 0; }
   100% {
     width: 50%; } }
-@media screen and (max-width: 390px) {
+@media screen and (max-width: 400px) {
   .heading {
     padding: 0 28px; }
 
   .grid-item-content img {
-    width: 28px;
-    height: 44px; } }
+    width: 41px;
+    height: 41px; } }
+@media screen and (max-width: 325px) {
+  .heading {
+    padding: 0 28px; }
+
+  .grid-item-content img {
+    width: 35px;
+    height: 35px; } }
 
 /*# sourceMappingURL=style.css.map */
