@@ -9,9 +9,12 @@ var random = function(start,end){
     var rand = Math.random() * (end - start) + start;
     return Math.floor(rand);
 };
-var on = function(elem,type,callback){
+var on = function(elem,type,callback,status){
     elem.addEventListener(type,function(e){
         callback(e);
+        if (status) {
+            return false;
+        }
     });
 };
 

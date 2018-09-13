@@ -22,4 +22,14 @@ function event(game){
         }
     });
 
+    var helpBtn = $('#help')[0];
+    on(helpBtn, 'click', function (e) {
+        game.help();
+    });
+
+    var restartBtn = $('#restart')[0];
+    on(restartBtn, 'click', function (e) {
+        game.restart();
+    });
+
 }

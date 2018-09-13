@@ -11,6 +11,8 @@ var Game = (function(){
 
     var timeCooldown = 60;
 
+    var hlepData = [];
+
     var Game = function(){
         
     };
@@ -31,6 +33,14 @@ var Game = (function(){
             this.fillCell();
             this.checkDeadlock();
             this.update();
+        },
+
+        restart: function () {
+            location.reload();  
+        },
+
+        help: function () {
+            this.judge.apply(this, hlepData);
         },
 
         update: function () {
@@ -327,6 +337,7 @@ var Game = (function(){
         },
 
         checkDeadlock: function () {
+            log(1);
             var count = config.objectCount;
             var cell = reduceDimension(data.cell);
             var filter = function (i) {
@@ -342,6 +353,7 @@ var Game = (function(){
                     for (var k = 0; k < len; k++){
                         var status = this.isConnectable(el, result[k].index);
                         if (status && status.success) {
+                            hlepData = [el, result[k].index];
                             return;
                         }
                     }
