@@ -1,35 +1,88 @@
-var config = (function(){
+var config = (function () {
+  var row = 8
+  var col = 7
+  var objectCount = 14
+  var repeatCount = (row * col) / objectCount
 
+  var time = 120
 
-    var row = 8;
-    var col = 7;
-    var objectCount = 14;
-    var repeatCount = row * col / objectCount;
+  var imgUrl = './img/'
+  var imgExtension = '.png'
+  var imgByName = function (name) {
+    var src = imgUrl + name + imgExtension
+    return `<img draggable="false" src="${src}"></img>`
+  }
 
-    var time = 120;
-
-    var imgUrl = "./img/";
-    var imgExtension = ".png";
-    var imgByName = function (name) {
-        var src = imgUrl + name + imgExtension;
-        return `<img draggable="false" src="${src}"></img>`;
-    }
-
-    var itemDirectionHTML = ` <div class="grid-item-direction">
+  var itemDirectionHTML = ` <div class="grid-item-direction">
                                     <div class="y up"></div>
                                     <div class="y down"></div>
                                     <div class="x left"></div>
                                     <div class="x right"></div>
-                              </div>`;
+                              </div>`
 
-    return {
-        row : row,
-        col : col,
-        objectCount : objectCount,
-        repeatCount: repeatCount, 
-        imgByName : imgByName,
-        itemDirectionHTML: itemDirectionHTML,
-        time : time,
-    }
+  var sentence = [
+    '活就像连连看，只有勇于面对困难，才能找到通往成功的路径',
+    '行到水穷处，坐看云起时',
+    '长风破浪会有时，直挂云帆济沧海。',
+    '壮志饥餐胡虏肉，笑谈渴饮匈奴血。',
+    '会当凌绝顶，一览众山小。',
+    '生当作人杰，死亦为鬼雄。',
+    '千淘万漉虽辛苦，吹尽狂沙始到金。',
+    '老当益壮，宁移白首之心?穷且益坚，不坠青云之志。',
+    '三更灯火五更鸡，正是男儿读书时。',
+    '横笛已停知否虑，襄萤既熄莫相违。',
+    '大鹏一日同风起，扶摇直上九万里。',
+    '不经一番寒彻骨，怎得梅花扑鼻香。',
+    '莫道桑榆晚，微霞尚满天。',
+    '沉舟侧畔千帆过，病树前头万木春。',
+    '射柳金鞍从猎去，斩蛟宝剑笑归来。',
+    '何日功成名遂了，还乡，醉笑陪公三万场。',
+    '古人学问无遗力，少壮工夫老始成。',
+    '花门楼前见秋草，岂能贫贱相看老。',
+    '洛阳亲友如相问，一片冰心在玉壶。',
+    '男儿何不带吴钩，收取关山五十州。',
+    '青山遮不住，毕竟东流去。',
+    '逆水行舟，不进则退。',
+    '立志欲坚不欲饶，做人脚踏实地好。',
+    '天生我材必有用，千金散尽还复来。',
+    '粉身碎骨浑不怕，要留清白在人间。',
+    '壮志骞骞伏枥嘶，中原逐鹿正当时。',
+    '长风万里送秋雁，对此可以酣高楼。',
+    '青山处处埋忠骨，何须马革裹尸还。',
+    '世人笑我太疯癫，我笑世人看不穿。',
+    '不畏浮云遮望眼，只缘身在最高层。',
+    '路遥知马力，日久见人心。',
+    '春蚕到死丝方尽，蜡炬成灰泪始干。',
+    '笔落惊风雨，诗成泣鬼神。',
+    '雄关漫道真如铁，而今迈步从头越。',
+    '只要功夫深，铁杵磨成针。',
+    '行百里者半九十，小狐汔济濡其尾。',
+    '国破山河在，城春草木深。',
+    '操千曲而后晓声，观千剑而后识器。',
+    '不畏浮云遮望眼，只缘身在最高层。',
+    '富贵不能淫，贫贱不能移，威武不能屈。',
+    '穷则独善其身，达则兼济天下。',
+    '水滴石穿，非一日之功。',
+    '业精于勤荒于嬉，行成于思毁于随。',
+    '三更灯火五更鸡，正是男儿读书时。',
+    '故天将降大任于是人也，必先苦其心志，劳其筋骨，饿其体肤，空乏其身，行拂乱其所为，所以动心忍性，增益其所不能。',
+    '人生得意须尽欢，莫使金樽空对月。天生我材必有用，千金散尽还复来。',
+    '宁为百夫长，胜作一书生。',
+    '会挽雕弓如满月,西北望,射天狼。',
+    '壮志未酬三尺剑，故乡空隔万重山。',
+    '莫笑农家腊酒浑，丰年留客足鸡豚。山重水复疑无路，柳暗花明又一村。',
+    '仰天大笑出门去,我辈岂是蓬蒿人。',
+    '宝剑锋从磨砺出,梅花香自苦寒来。'
+  ]
 
-})();
+  return {
+    row: row,
+    col: col,
+    objectCount: objectCount,
+    repeatCount: repeatCount,
+    imgByName: imgByName,
+    itemDirectionHTML: itemDirectionHTML,
+    time: time,
+    sentence: sentence
+  }
+})()
